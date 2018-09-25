@@ -9,7 +9,7 @@ setupGame <- function(numPlayers=2L){
                   "E3", "E4", "E5",
                   "F2", "F4", "F6",
                   "G1", "G4", "G7")
-
+  
   nodes <- data.frame(posX = c(rep(-3, 3),
                                rep(-2, 3),
                                rep(-1, 3),
@@ -20,9 +20,9 @@ setupGame <- function(numPlayers=2L){
                       posY = as.integer(substr(nodesNames, 2, 2))-4,
                       counters = 0L,
                       owner = 0L)
-
+  
   rownames(nodes) <- nodesNames
-
+  
   # edges
   edges <- do.call("rbind",
                    list(c("A1", "A4"),
@@ -65,9 +65,10 @@ setupGame <- function(numPlayers=2L){
                         c("F6", "G7"),
                         c("G1", "G4"),
                         c("G4", "G7")))
-
+  
   return(list(nextPlayer = 1L,
               nodes = nodes,
               edges = edges,
-              numPlayers = numPlayers))
+              numPlayers = numPlayers,
+              previousState = NULL))
 }

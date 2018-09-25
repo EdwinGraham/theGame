@@ -1,7 +1,7 @@
 Package: theGame
 Type: Package
 Title: Play The Game in R
-Version: 0.1.0
+Version: 0.1.1
 Author: Edwin Graham <edwingraham1984@gmail.com>
 Maintainer: Edwin Graham <edwingraham1984@gmail.com>
 Description: Contains interactive function playTheGame() with which you can play

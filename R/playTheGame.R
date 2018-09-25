@@ -8,22 +8,23 @@
 #' @export
 
 playTheGame <- function(){
-  numPlayers <- as.integer(readline("How many players? "))
-
+  numPlayers <- as.integer(readline("How many players (2-4?) "))
+  
   if (numPlayers < 2L | numPlayers > 4L) stop("Invalid number of players.")
-
+  
   pos <- setupGame(numPlayers)
-
+  
   displayGame(pos)
-
+  
   cat(paste0("Order of play is: ",
              paste0(sapply(seq(1, numPlayers),
-                          function(n) playerCol(n, name=TRUE)),
+                           function(n) playerCol(n, name=TRUE)),
                     collapse = ", ")), "\n")
-
+  
   while (! gameOver(pos)){
-    move <- toupper(readline("What move are you playing? "))
+    move <- gsub(" ", "", toupper(readline("What move are you playing? ")))
     tryMove <- try(nextPos(pos, move))
     if (! "try-error" %in% class(tryMove)) pos <- tryMove
   }
 }
+
