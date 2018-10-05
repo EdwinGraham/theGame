@@ -8,9 +8,10 @@
 #' @export
 
 playTheGame <- function(){
-  numPlayers <- as.integer(readline("How many players (2-4?) "))
-  
-  if (numPlayers < 2L | numPlayers > 4L) stop("Invalid number of players.")
+  numPlayers <- as.integer(readline("How many players? "))
+  if (numPlayers > 12L){
+    stop("That's too many!")
+  } else if (numPlayers < 2L) stop("Not enough players.")
   
   pos <- setupGame(numPlayers)
   
@@ -18,7 +19,7 @@ playTheGame <- function(){
   
   cat(paste0("Order of play is: ",
              paste0(sapply(seq(1, numPlayers),
-                           function(n) playerCol(n, name=TRUE)),
+                           function(n) playerCol(n)$name),
                     collapse = ", ")), "\n")
   
   while (! gameOver(pos)){
